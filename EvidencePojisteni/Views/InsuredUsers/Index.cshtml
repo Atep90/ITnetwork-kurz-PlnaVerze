@@ -1,0 +1,84 @@
+﻿@model IEnumerable<EvidencePojisteni.Models.InsuredUser>
+
+@{
+	ViewData["Title"] = "Seznam pojištěnů";
+}
+
+<h1 class="mb-4 fw-normal text-center display-4 my-color text-decoration-underline ">Seznam pojištěnců</h1>
+
+@if (User.IsInRole(UserRoles.Admin))
+{
+	<p class="d-flex justify-content-center p-3">
+		<a class="btn my-btn" asp-action="Create">Vytvořit nového pojištěnce</a>
+	</p>
+}
+
+
+<table class="table my-table table-striped ">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LastName)
+			</th>
+			<th class="d-none d-md-table-cell">
+				@Html.DisplayNameFor(model => model.Email)
+			</th>
+			<th class="d-none d-lg-table-cell">
+				@Html.DisplayNameFor(model => model.PhoneNumber)
+			</th>
+			<th class="d-none d-lg-table-cell">
+				@Html.DisplayNameFor(model => model.Adress)
+			</th>
+			<th class="d-none d-lg-table-cell">
+				@Html.DisplayNameFor(model => model.City)
+			</th>
+			<th class="d-none d-lg-table-cell">
+				@Html.DisplayNameFor(model => model.ZipCode)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.FirstName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LastName)
+				</td>
+				<td class="d-none d-md-table-cell">
+					@Html.DisplayFor(modelItem => item.Email)
+				</td>
+				<td class="d-none d-lg-table-cell">
+					@Html.DisplayFor(modelItem => item.PhoneNumber)
+				</td>
+				<td class="d-none d-lg-table-cell">
+					@Html.DisplayFor(modelItem => item.Adress)
+				</td>
+				<td class="d-none d-lg-table-cell">
+					@Html.DisplayFor(modelItem => item.City)
+				</td>
+				<td class="d-none d-lg-table-cell">
+					@Html.DisplayFor(modelItem => item.ZipCode)
+				</td>
+				<td class="btn-group" role="group">
+					@if (User.IsInRole(UserRoles.Admin))
+					{
+						<a class="btn my-btn " asp-action="Edit" asp-route-id="@item.UserId">Upravit</a>
+						<a class="btn my-btn " asp-action="Details" asp-route-id="@item.UserId">Detaily</a>
+						<a class="btn my-btn text-danger" asp-action="Delete" asp-route-id="@item.UserId">Odstranit</a>
+					}
+					else
+					{
+						<a class="btn my-btn " asp-action="Details" asp-route-id="@item.UserId">Detaily</a>
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,158 @@
+﻿@model EvidencePojisteni.Models.InsuredUser
+
+@{
+	ViewData["Title"] = "Detaily pojištěnce";
+}
+
+<h1 class="mb-4 fw-normal text-center display-4 my-color text-decoration-underline ">Detaily pojištěnce</h1>
+
+<hr />
+
+
+<div class="card bg-secondary bg-opacity-50 border-2 rounded-3 p-3 w-100">
+	<dl class="row g-sm-2">
+		<dt class="col-sm-3">
+			@Html.DisplayNameFor(model => model.FirstName)
+		</dt>
+		<dd class="col-sm-3">
+			@Html.DisplayFor(model => model.FirstName)
+		</dd>
+		<dt class="col-sm-3">
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
+		<dd class="col-sm-3">
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
+		<dt class="col-sm-3">
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd class="col-sm-3">
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt class="col-sm-3">
+			@Html.DisplayNameFor(model => model.PhoneNumber)
+		</dt>
+		<dd class="col-sm-3">
+			@Html.DisplayFor(model => model.PhoneNumber)
+		</dd>
+	</dl>
+
+	<a class="btn my-color fw-bolder fs-5" data-bs-toggle="collapse" href="#address" role="button">Adresa</a>
+	<div class="collapse" id="address">
+		<hr />
+
+		<dl class="row text-center">
+			<dt class="offset-sm-3 col-sm-3">
+				@Html.DisplayNameFor(model => model.Adress)
+			</dt>
+			<dd class="col-sm-3">
+				@Html.DisplayFor(model => model.Adress)
+			</dd>
+			<dt class="offset-sm-3 col-sm-3">
+				@Html.DisplayNameFor(model => model.City)
+			</dt>
+			<dd class="col-sm-3">
+				@Html.DisplayFor(model => model.City)
+			</dd>
+			<dt class="offset-sm-3 col-sm-3">
+				@Html.DisplayNameFor(model => model.ZipCode)
+			</dt>
+			<dd class="col-sm-3">
+				@Html.DisplayFor(model => model.ZipCode)
+			</dd>
+		</dl>
+	</div>
+</div>
+
+
+@if (User.IsInRole(UserRoles.Admin))
+{
+	<div class="d-flex p-3 justify-content-center">
+		<div class="btn-group">
+			<a class="btn my-btn" asp-action="Edit" asp-route-id="@Model?.UserId">Upravit</a>
+			<a class="btn my-btn" asp-action="Index">Zpět na seznam</a>
+		</div>
+	</div>
+}
+else
+{
+	<div class="d-flex justify-content-center p-3">
+		<a class="btn my-btn" asp-action="Index">Zpět na seznam</a>
+	</div>
+}
+
+
+<hr />
+
+@if (ViewData["Insurances"] != null)
+{
+	var insurances = (List<EvidencePojisteni.Models.Insurance>)ViewData["Insurances"];
+
+	@if (User.IsInRole(UserRoles.Admin))
+	{
+		<div class="d-flex justify-content-center p-3">
+			<a class="btn my-btn" href="@Url.Action("Create", "Insurances", new { insuredUserId = Model.UserId })">Vytvořit novou pojistku</a>
+		</div>
+	}
+
+	if (insurances?.Any() == true)
+	{
+		<table class="table my-table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Typ pojištění
+					</th>
+					<th>
+						Částka
+					</th>
+					<th class="d-none d-lg-table-cell">
+						Věc k pojištění
+					</th>
+					<th class="d-none d-md-table-cell">
+						Od
+					</th>
+					<th class="d-none d-md-table-cell">
+						Do
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var insurance in insurances)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => insurance.InsuranceType)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => insurance.Amount)
+						</td>
+						<td class="d-none d-lg-table-cell">
+							@Html.DisplayFor(modelItem => insurance.SubjectOfInsurance)
+						</td>
+						<td class="d-none d-md-table-cell">
+							@Html.DisplayFor(modelItem => insurance.DateFrom)
+						</td>
+						<td class="d-none d-md-table-cell">
+							@Html.DisplayFor(modelItem => insurance.DateTo)
+						</td>
+						<td class="btn-group" role="group">
+							@if (User.IsInRole(UserRoles.Admin))
+							{
+								<a class="btn my-btn" asp-controller="Insurances" asp-action="Edit" asp-route-id="@insurance.InsuranceId">Upravit</a>
+								<a class="btn my-btn" asp-controller="Insurances" asp-action="Details" asp-route-id="@insurance.InsuranceId">Detaily</a>
+								<a class="btn my-btn text-danger" asp-controller="Insurances" asp-action="Delete" asp-route-id="@insurance.InsuranceId">Odstranit</a>
+							}
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	else
+	{
+		<p class="my-color fw-bold text-center">Seznam je prázdný</p>
+	}
+}
+

@@ -1,0 +1,59 @@
+﻿@model EvidencePojisteni.Models.Insurance
+
+@{
+	ViewData["Title"] = "Odebrat pojištění";
+}
+
+<h1 class="mb-4 fw-normal text-center display-4 my-color text-decoration-underline ">Odebrat pojištění</h1>
+
+
+<div>
+	<hr />
+	<div class="container-fluid bg-white bg-opacity-75 shedow-max m-auto ">
+		<div class="container my-color">
+			<h5 class="text-danger text-center p-3">Jste si jistí že chcete pojištění odebrat?</h5>
+			<hr/>
+			<dl class="row g-3">
+				<dt class="col-4">
+					@Html.DisplayNameFor(model => model.InsuranceType)
+				</dt>
+				<dd class="offset-3 col-5">
+					@Html.DisplayFor(model => model.InsuranceType)
+				</dd>
+				<dt class="col-4">
+					@Html.DisplayNameFor(model => model.Amount)
+				</dt>
+				<dd class="offset-3 col-5">
+					@Html.DisplayFor(model => model.Amount)
+				</dd>
+				<dt class="col-4">
+					@Html.DisplayNameFor(model => model.SubjectOfInsurance)
+				</dt>
+				<dd class="offset-3 col-5">
+					@Html.DisplayFor(model => model.SubjectOfInsurance)
+				</dd>
+				<dt class="col-4">
+					@Html.DisplayNameFor(model => model.DateFrom)
+				</dt>
+				<dd class="offset-3 col-5">
+					@Html.DisplayFor(model => model.DateFrom)
+				</dd>
+				<dt class="col-4">
+					@Html.DisplayNameFor(model => model.DateTo)
+				</dt>
+				<dd class="offset-3 col-5">
+					@Html.DisplayFor(model => model.DateTo)
+				</dd>				
+			</dl>
+			<hr/>
+
+			<div class="d-flex justify-content-center pb-3">
+			<form asp-action="Delete">
+				<input type="hidden" asp-for="InsuranceId" />
+				<input type="submit" value="Odstranit" class="btn btn-danger" /> |
+				<a class="btn fs-5 my-color" asp-controller="InsuredUsers" asp-action="Details" asp-route-id="@Model?.InsuredUserId">Zpět</a>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>

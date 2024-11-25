@@ -1,0 +1,70 @@
+﻿@model IEnumerable<EvidencePojisteni.Models.Insurance>
+
+@{
+    ViewData["Title"] = "Seznam pojištění";
+}
+
+<h1 class="mb-4 fw-normal text-center display-4 my-color text-decoration-underline ">Seznam sjednaných pojištění</h1>
+
+@if (User.IsInRole(UserRoles.Admin))
+{
+    <p class="d-flex justify-content-center p-3">
+        <a class="btn my-btn" asp-action="Create">Vytvořit nové pojištění</a>
+    </p>
+}
+
+<table class="table my-table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceType)
+            </th>
+            <th class="d-none d-sm-table-cell">
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th class="d-none d-lg-table-cell">
+                @Html.DisplayNameFor(model => model.SubjectOfInsurance)
+            </th>
+            <th class="d-none d-md-table-cell">
+                @Html.DisplayNameFor(model => model.DateFrom)
+            </th>
+            <th class="d-none d-md-table-cell">
+                @Html.DisplayNameFor(model => model.DateTo)
+            </th>
+            <th>
+                Pojištěnec
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsuranceType)
+            </td>
+                <td class="d-none d-sm-table-cell">
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td class="d-none d-lg-table-cell">
+                @Html.DisplayFor(modelItem => item.SubjectOfInsurance)
+            </td>
+                <td class="d-none d-md-table-cell">
+                @Html.DisplayFor(modelItem => item.DateFrom)
+            </td>
+                <td class="d-none d-md-table-cell">
+                @Html.DisplayFor(modelItem => item.DateTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsuredUser.FirstName)
+                @Html.DisplayFor(modelItem => item.InsuredUser.LastName)
+            </td>
+                <td class="btn-group" role="group">
+                <a class="btn my-btn" asp-action="Edit" asp-route-id="@item.InsuranceId">Upravit</a>
+                <a class="btn my-btn" asp-action="Details" asp-route-id="@item.InsuranceId">Detaily</a>
+                <a class="btn my-btn text-danger" asp-action="Delete" asp-route-id="@item.InsuranceId">Odebrat</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

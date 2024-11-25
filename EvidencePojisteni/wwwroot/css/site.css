@@ -1,0 +1,103 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {    
+    margin-bottom: 60px;    
+}
+    body::before {
+        content: "";
+        position: absolute;
+        background-image: url(../images/pojisteni-pozadi.webp);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: -1;
+    }
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;   
+}
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;        
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+.form-select,
+.form-control {
+    outline: medium;
+    border-color: #036167;
+    margin: 2px;
+}   
+    .form-select:focus,
+    .form-control:focus {
+        outline: none;
+        box-shadow: none;
+        border: solid;
+        border-color: #0bfcdf;
+    }
+
+
+.my-color {
+    color: #142c3e    
+}
+    
+
+.my-btn {
+        background: #8daeb894;
+        border-radius: 5px 5px 0 0;
+        font-size: 15px;
+        border: solid 2px;
+        border-color: #036167;       
+    }    
+    .my-btn:hover {
+        border-color: #0bfcdf;
+    }
+    .my-color:focus,
+    .my-btn:focus {
+    box-shadow: none;
+    outline: none;
+    }
+
+.shedow-max {
+    max-width: 500px;
+}
+
+.my-table {
+    background: #ffffffe2;
+}
+
+thead {
+    background: #81a6b1e4;
+}
