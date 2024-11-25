@@ -1,7 +1,7 @@
 ﻿namespace EvidencePojisteni
 {
-    public class UserRoles
-    {
-        public const string Admin = "admin";
-    }
+	public class UserRoles
+	{
+		public const string Admin = "admin";
+	}
 }

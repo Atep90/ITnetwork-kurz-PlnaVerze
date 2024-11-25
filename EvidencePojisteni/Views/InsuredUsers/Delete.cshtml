@@ -56,14 +56,14 @@
 					@Html.DisplayFor(model => model.ZipCode)
 				</dd>
 			</dl>
-			<hr/>
+			<hr />
 
 			<div class="d-flex justify-content-center pb-3">
-			<form asp-action="Delete">
-				<input type="hidden" asp-for="UserId" />
-				<input type="submit" value="Odstranit" class="btn btn-danger" /> |
+				<form asp-action="Delete">
+					<input type="hidden" asp-for="UserId" />
+					<input type="submit" value="Odstranit" class="btn btn-danger" /> |
 					<a class="btn fs-5 my-color" asp-action="Index">Zpět</a>
-			</form>
+				</form>
 			</div>
 		</div>
 	</div>

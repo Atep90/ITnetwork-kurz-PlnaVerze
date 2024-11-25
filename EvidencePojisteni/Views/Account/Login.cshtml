@@ -10,17 +10,17 @@
 			<div class="form-signin my-color my-input">
 				<form class="d-flex flex-column gap-2" asp-route-returnUrl="@ViewData["ReturnUrl"]">
 					<div class="d-flex justify-content-center">
-					<img class="mb-1" src="~/images/Logo-projekt.webp" alt="logo-panák" width="100%" />
+						<img class="mb-1" src="~/images/Logo-projekt.webp" alt="logo-panák" width="100%" />
 					</div>
 					<h2 class="mb-4 fw-normal text-center display-4 my-color">Přihlášení</h2>
 					<div asp-validation-summary="All" class="text-danger"></div>
 					<div class="form-floating">
 						<input asp-for="Email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-						<label asp-for="Email" for="floatingInput">Email</label>						
+						<label asp-for="Email" for="floatingInput">Email</label>
 					</div>
 					<div class="form-floating">
 						<input asp-for="Password" type="password" class="form-control" id="floatingPassword" placeholder="Heslo" />
-						<label asp-for="Password" for="floatingPassword" class="form-label">Heslo</label>						
+						<label asp-for="Password" for="floatingPassword" class="form-label">Heslo</label>
 					</div>
 					<div class="col-form-check input">
 						<input asp-for="RememberMe" class="form-check-input">

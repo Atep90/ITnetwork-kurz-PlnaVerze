@@ -3,22 +3,22 @@
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-danger" asp-area="" asp-controller="Account" asp-action="Logout">Odhásit se</a>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-controller="Account" asp-action="Register">Registrace</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-controller="Account" asp-action="Login">Přihlášení</a>
-    </li>
-}
+	@if (SignInManager.IsSignedIn(User))
+	{
+		<li class="nav-item">
+			<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity?.Name!</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-danger" asp-area="" asp-controller="Account" asp-action="Logout">Odhásit se</a>
+		</li>
+	}
+	else
+	{
+		<li class="nav-item">
+			<a class="nav-link text-dark" asp-area="Identity" asp-controller="Account" asp-action="Register">Registrace</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-dark" asp-area="Identity" asp-controller="Account" asp-action="Login">Přihlášení</a>
+		</li>
+	}
 </ul>
